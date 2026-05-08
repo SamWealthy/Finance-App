@@ -1,131 +1,43 @@
 # Personal Finance Tracker PWA
 
-## Overview
+A mobile-friendly personal finance web app for monthly budgeting, bill tick-off, debt tracking, and monthly history archiving.
 
-Personal Finance Tracker is a mobile-friendly Progressive Web App (PWA) designed to help users manage monthly finances, track expenses, monitor debt payoff progress, and tick off paid bills in real time.
+## Features
 
-The app works offline, stores data locally on the device, and can be installed on Android, iPhone, tablet, or desktop like a native application.
+- Password wall with first-use password setup
+- Optional 4-digit quick PIN
+- Monthly income dashboard
+- Add, edit, and delete expenses
+- Mark bills as paid/unpaid
+- Recurring and one-off expense support
+- Monthly archive with automatic reset
+- Add, edit, and delete debts
+- Debt payoff estimate with APR/interest calculation
+- Expense and debt charts
+- Export/import JSON backup
+- Installable Progressive Web App
+- Offline support via service worker
+- GitHub Pages ready
 
----
+## GitHub Pages Deployment
 
-# Features
+1. Upload all files to your GitHub repository.
+2. Go to `Settings > Pages`.
+3. Choose your deployment branch, usually `main`.
+4. Select `/root` as the folder.
+5. Enable HTTPS if available.
+6. Open your GitHub Pages URL.
 
-## Financial Dashboard
+## Mobile Installation
 
-* Monthly income tracking
-* Real-time remaining balance calculation
-* Monthly paid amount tracking
-* Remaining bills overview
+### Android / Chrome
+Open the GitHub Pages URL, tap the browser menu, then select `Add to Home screen` or use the app’s `Install App` button if shown.
 
-## Expense Management
+### iPhone / Safari
+Open the GitHub Pages URL in Safari, tap Share, then select `Add to Home Screen`.
 
-* Add unlimited expenses
-* Edit existing expenses
-* Delete expenses
-* Tick off paid bills monthly
-* Automatic remaining balance calculations
+## Version
 
-## Debt Tracking
+Current version: `v2.0.0`
 
-* Add and manage debts
-* Edit balances and monthly payments
-* APR/interest support
-* Debt payoff timeline estimation
-* Total debt calculation
-
-## Charts & Analytics
-
-* Expense breakdown chart
-* Debt balance chart
-* Real-time chart updates
-
-## Security
-
-* First-time password setup
-* Password-protected access
-* Change password option
-* Device-local encrypted password hash
-
-## Backup & Restore
-
-* Export financial data backup
-* Import saved backup files
-* Local device data storage
-
-## PWA Support
-
-* Installable on mobile devices
-* Offline support
-* Fast loading
-* Home screen icon support
-
----
-
-# Installation
-
-## Local Use
-
-1. Extract the ZIP file.
-2. Open `index.html` in a modern browser.
-3. Set a password on first launch.
-4. Begin managing your finances.
-
----
-
-# Mobile Installation
-
-## Android (Chrome)
-
-1. Open the app in Chrome.
-2. Tap the browser menu.
-3. Select `Add to Home Screen`.
-4. Launch the app from your home screen.
-
-## iPhone / iPad (Safari)
-
-1. Open the app in Safari.
-2. Tap the Share button.
-3. Select `Add to Home Screen`.
-4. Launch the app like a normal app.
-
----
-
-# Technologies Used
-
-* HTML5
-* CSS3
-* JavaScript
-* Chart.js
-* Progressive Web App (PWA)
-* LocalStorage
-* Service Workers
-
----
-
-# Notes
-
-* All financial data is stored locally on the device.
-* Clearing browser storage may remove saved data.
-* Use the Export Backup feature regularly.
-* Password protection is designed for personal privacy and local security.
-
----
-
-# Future Upgrade Ideas
-
-* Cloud sync
-* Multi-user accounts
-* Fingerprint / Face ID login
-* Savings goals tracker
-* Investment tracking
-* Net worth dashboard
-* Recurring bill reminders
-* PDF report generation
-* Multi-currency support
-
----
-
-# Version
-
-Version: 1.0
-Type: Progressive Web App (PWA)
+When updating the app, change the cache name in `service-worker.js` so users receive the latest version.

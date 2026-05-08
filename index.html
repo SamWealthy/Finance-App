@@ -7,21 +7,20 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Personal Finance Tracker PWA for monthly budgeting, bill tick-off, and debt tracking." />
 </head>
 <body>
   <div id="authScreen" class="auth-screen">
     <div class="auth-card">
+      <p class="eyebrow">Finance Tracker</p>
       <h1 id="authTitle">Set Password</h1>
       <p id="authSubtitle">Create a password for this device.</p>
-
       <form id="authForm" class="form-stack">
-        <input id="passwordInput" type="password" placeholder="Password" required />
+        <input id="passwordInput" type="password" placeholder="Password or PIN" required />
         <input id="confirmPasswordInput" type="password" placeholder="Confirm password" />
         <button type="submit" id="authButton">Save Password</button>
       </form>
-
       <p id="authMessage" class="auth-message"></p>
-
       <button id="forgotPasswordBtn" class="danger-outline hidden">Forgot password / reset app</button>
     </div>
   </div>
@@ -31,18 +30,21 @@
       <div>
         <p class="eyebrow">Personal Finance Tracker</p>
         <h1>Monthly Budget & Debt Dashboard</h1>
-        <p class="subtitle">Track income, tick off paid bills, edit expenses, and monitor debt payoff.</p>
+        <p class="subtitle">Track income, tick off bills, archive monthly records, and monitor debt payoff.</p>
       </div>
-
       <div class="hero-actions">
+        <button id="installBtn" class="hidden">Install App</button>
+        <button id="archiveMonthBtn">Archive Month</button>
         <button id="lockBtn">Lock</button>
-        <button id="resetMonthBtn" class="danger-outline">Reset Month</button>
+        <button id="resetMonthBtn" class="danger-outline">Reset Ticks</button>
       </div>
     </header>
 
+    <section class="notice"><strong>GitHub Pages Ready:</strong> Use HTTPS in GitHub Pages settings for PWA install and service worker support.</section>
+
     <section class="cards">
       <div class="card"><p>Monthly Income</p><h2 id="incomeDisplay">£0.00</h2></div>
-      <div class="card"><p>Total Monthly Outgoings</p><h2 id="outgoingsDisplay">£0.00</h2></div>
+      <div class="card"><p>Total Outgoings</p><h2 id="outgoingsDisplay">£0.00</h2></div>
       <div class="card"><p>Paid This Month</p><h2 id="paidDisplay">£0.00</h2></div>
       <div class="card highlight"><p>Left After Remaining Bills</p><h2 id="leftDisplay">£0.00</h2></div>
     </section>
@@ -50,10 +52,7 @@
     <main class="grid">
       <section class="panel">
         <div class="panel-header"><h2>Income</h2></div>
-        <div class="form-row">
-          <label for="incomeInput">Monthly net income (£)</label>
-          <input id="incomeInput" type="number" min="0" step="0.01" />
-        </div>
+        <div class="form-row"><label for="incomeInput">Monthly net income (£)</label><input id="incomeInput" type="number" min="0" step="0.01" /></div>
       </section>
 
       <section class="panel">
@@ -61,27 +60,21 @@
         <form id="expenseForm" class="form-stack">
           <input id="expenseName" type="text" placeholder="Expense name e.g. Food" required />
           <input id="expenseAmount" type="number" min="0" step="0.01" placeholder="Amount £" required />
+          <label class="checkline"><input id="expenseRecurring" type="checkbox" checked /> Recurring monthly expense</label>
           <button type="submit">Add Expense</button>
         </form>
       </section>
 
       <section class="panel wide">
         <div class="panel-header">
-          <h2>Monthly Tick-Off</h2>
-          <p id="remainingText">Remaining to pay: £0.00</p>
+          <div><h2>Monthly Tick-Off</h2><p id="remainingText">Remaining to pay: £0.00</p></div>
+          <div class="small-controls"><button id="markAllPaidBtn">Mark All Paid</button><button id="markAllUnpaidBtn" class="danger-outline">Mark All Unpaid</button></div>
         </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Paid</th><th>Expense</th><th>Amount</th><th>Remaining</th><th></th></tr>
-            </thead>
-            <tbody id="expensesTable"></tbody>
-          </table>
-        </div>
+        <div class="table-wrap"><table><thead><tr><th>Paid</th><th>Expense</th><th>Amount</th><th>Remaining</th><th>Recurring</th><th></th></tr></thead><tbody id="expensesTable"></tbody></table></div>
       </section>
 
       <section class="panel">
-        <div class="panel-header"><h2>Add / Edit Debt</h2></div>
+        <div class="panel-header"><h2>Add Debt</h2></div>
         <form id="debtForm" class="form-stack">
           <input id="debtName" type="text" placeholder="Debt name" required />
           <input id="debtBalance" type="number" min="0" step="0.01" placeholder="Balance £" required />
@@ -91,54 +84,33 @@
         </form>
       </section>
 
+      <section class="panel">
+        <div class="panel-header"><h2>Security</h2></div>
+        <div class="form-stack"><button id="changePasswordBtn">Change Password</button><button id="setPinBtn">Set / Change Quick PIN</button><button id="removePinBtn" class="danger-outline">Remove Quick PIN</button></div>
+      </section>
+
       <section class="panel wide">
-        <div class="panel-header">
-          <h2>Debt Tracker</h2>
-          <p id="debtTotalText">Total debt: £0.00</p>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Debt</th><th>Balance</th><th>Payment</th><th>APR</th><th>Months Left</th><th></th></tr>
-            </thead>
-            <tbody id="debtsTable"></tbody>
-          </table>
-        </div>
+        <div class="panel-header"><div><h2>Debt Tracker</h2><p id="debtTotalText">Total debt: £0.00</p></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Debt</th><th>Balance</th><th>Payment</th><th>APR</th><th>Months Left</th><th>Total Interest</th><th>Payoff Date</th><th></th></tr></thead><tbody id="debtsTable"></tbody></table></div>
       </section>
 
       <section class="panel wide">
         <div class="panel-header"><h2>Charts</h2></div>
-        <div class="chart-grid">
-          <div class="chart-card">
-            <h3>Expenses Breakdown</h3>
-            <div class="chart-box">
-              <canvas id="expenseChart"></canvas>
-            </div>
-          </div>
-          <div class="chart-card">
-            <h3>Debt Balances</h3>
-            <div class="chart-box">
-              <canvas id="debtChart"></canvas>
-            </div>
-          </div>
-        </div>
+        <div class="chart-grid"><div class="chart-card"><h3>Expenses Breakdown</h3><div class="chart-box"><canvas id="expenseChart"></canvas></div></div><div class="chart-card"><h3>Debt Balances</h3><div class="chart-box"><canvas id="debtChart"></canvas></div></div></div>
+      </section>
+
+      <section class="panel wide">
+        <div class="panel-header"><div><h2>Monthly History</h2><p>Archived month-end snapshots.</p></div></div>
+        <div class="table-wrap"><table><thead><tr><th>Date Archived</th><th>Income</th><th>Expenses</th><th>Paid</th><th>Remaining</th><th>Debt</th><th></th></tr></thead><tbody id="historyTable"></tbody></table></div>
       </section>
 
       <section class="panel wide">
         <div class="panel-header"><h2>Data Controls</h2></div>
-        <div class="actions">
-          <button id="exportBtn">Export Backup</button>
-          <label class="import-label">
-            Import Backup
-            <input id="importInput" type="file" accept="application/json" />
-          </label>
-          <button id="changePasswordBtn">Change Password</button>
-          <button id="factoryResetBtn" class="danger">Factory Reset</button>
-        </div>
+        <div class="actions"><button id="exportBtn">Export Backup</button><label class="import-label">Import Backup<input id="importInput" type="file" accept="application/json" /></label><button id="factoryResetBtn" class="danger">Factory Reset</button></div>
       </section>
     </main>
+    <footer class="footer"><span>Finance Tracker v2.0.0</span><span>Built for GitHub Pages / PWA</span></footer>
   </div>
-
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="app.js"></script>
 </body>
