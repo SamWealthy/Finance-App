@@ -3,67 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Personal Finance Tracker</title>
+  <title>Finance Monthly Money Tracker</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="style.css" />
   <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="A mobile-friendly monthly money tracker for income, expenses, bills, debts, and monthly history." />
 </head>
 <body>
-  <div id="authScreen" class="auth-screen">
-    <div class="auth-card">
-      <p class="eyebrow">Finance Tracker</p>
-      <h1 id="authTitle">Set Password</h1>
-      <p id="authSubtitle">Create a password for this device.</p>
-      <form id="authForm" class="form-stack">
-        <input id="passwordInput" type="password" placeholder="Password or PIN" required />
-        <input id="confirmPasswordInput" type="password" placeholder="Confirm password" />
-        <button type="submit" id="authButton">Save Password</button>
-      </form>
-      <p id="authMessage" class="auth-message"></p>
-      <button id="forgotPasswordBtn" class="danger-outline hidden">Forgot password / reset app</button>
-    </div>
-  </div>
+  <div id="authScreen" class="auth-screen"><div class="auth-card">
+    <p class="eyebrow">Finance Monthly Money Tracker</p><h1 id="authTitle">Set Password</h1><p id="authSubtitle">Create a password for this device.</p>
+    <form id="authForm" class="form-stack"><input id="passwordInput" type="password" placeholder="Password or PIN" required /><input id="confirmPasswordInput" type="password" placeholder="Confirm password" /><button type="submit" id="authButton">Save Password</button></form>
+    <p id="authMessage" class="auth-message"></p><button id="forgotPasswordBtn" class="danger-outline hidden">Forgot password / reset app</button>
+  </div></div>
 
   <div id="mainApp" class="app hidden">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">Personal Finance Tracker</p>
-        <h1>Monthly Budget & Debt Dashboard</h1>
-        <p class="subtitle">Track income, tick off bills, archive monthly records, and monitor debts.</p>
-      </div>
-      <div class="hero-actions">
-        <button id="installBtn" class="hidden">Install App</button>
-        <button id="archiveMonthBtn">Archive Month</button>
-        <button id="lockBtn">Lock</button>
-        <button id="resetMonthBtn" class="danger-outline">Reset Ticks</button>
-      </div>
-    </header>
-
-    <section class="notice"><strong>GitHub Pages Ready:</strong> This app works best over HTTPS. GitHub Pages provides HTTPS automatically when enabled.</section>
-
-    <section class="cards">
-      <div class="card"><p>Monthly Income</p><h2 id="incomeDisplay">£0.00</h2></div>
-      <div class="card"><p>Total Outgoings</p><h2 id="outgoingsDisplay">£0.00</h2></div>
-      <div class="card"><p>Paid This Month</p><h2 id="paidDisplay">£0.00</h2></div>
-      <div class="card highlight"><p>Left After Bills</p><h2 id="leftDisplay">£0.00</h2></div>
-    </section>
-
+    <header class="hero"><div><p class="eyebrow">Finance Monthly Money Tracker</p><h1>Monthly Money Dashboard</h1><p class="subtitle">Track income, bills, expenses, debts, monthly history, and remaining money.</p></div><div class="hero-actions"><button id="installBtn" class="hidden">Install App</button><button id="archiveMonthBtn">Archive Month</button><button id="lockBtn">Lock</button><button id="resetMonthBtn" class="danger-outline">Reset Ticks</button></div></header>
+    <section class="notice"><strong>Private by default:</strong> Your data is saved locally on this device. Use Export Backup regularly if you want to move or restore your data.</section>
+    <section class="cards"><div class="card"><p>Monthly Income</p><h2 id="incomeDisplay">£0.00</h2></div><div class="card"><p>Total Outgoings</p><h2 id="outgoingsDisplay">£0.00</h2></div><div class="card"><p>Paid This Month</p><h2 id="paidDisplay">£0.00</h2></div><div class="card highlight"><p>Left After Bills</p><h2 id="leftDisplay">£0.00</h2></div></section>
     <main class="grid">
-      <section class="panel"><div class="panel-header"><h2>Income</h2></div><div class="form-row"><label for="incomeInput">Monthly net income (£)</label><input id="incomeInput" type="number" min="0" step="0.01" /></div></section>
-      <section class="panel"><div class="panel-header"><h2>Add Expense</h2></div><form id="expenseForm" class="form-stack"><input id="expenseName" type="text" placeholder="Expense name e.g. Food" required /><input id="expenseAmount" type="number" min="0" step="0.01" placeholder="Amount £" required /><label class="checkline"><input id="expenseRecurring" type="checkbox" checked />Recurring monthly expense</label><button type="submit">Add Expense</button></form></section>
+      <section class="panel"><div class="panel-header"><h2>Income</h2></div><div class="form-row"><label for="incomeInput">Monthly net income</label><input id="incomeInput" type="number" min="0" step="0.01" placeholder="e.g. 2700" /></div></section>
+      <section class="panel"><div class="panel-header"><h2>Add Bill / Expense</h2></div><form id="expenseForm" class="form-stack"><input id="expenseName" type="text" placeholder="Name e.g. Rent, Food, Fuel" required /><input id="expenseAmount" type="number" min="0" step="0.01" placeholder="Amount" required /><label class="checkline"><input id="expenseRecurring" type="checkbox" checked /> Recurring monthly item</label><button type="submit">Add Item</button></form></section>
       <section class="panel wide"><div class="panel-header stack-on-mobile"><div><h2>Monthly Tick-Off</h2><p id="remainingText">Remaining to pay: £0.00</p></div><div class="small-controls"><button id="markAllPaidBtn">Mark All Paid</button><button id="markAllUnpaidBtn" class="danger-outline">Mark All Unpaid</button></div></div><div id="expensesList" class="mobile-list"></div></section>
-      <section class="panel"><div class="panel-header"><h2>Add Debt</h2></div><form id="debtForm" class="form-stack"><input id="debtName" type="text" placeholder="Debt name" required /><input id="debtBalance" type="number" min="0" step="0.01" placeholder="Balance £" required /><input id="debtPayment" type="number" min="0" step="0.01" placeholder="Monthly payment £" required /><input id="debtInterest" type="number" min="0" step="0.01" placeholder="Interest % APR, use 0 if none" /><button type="submit">Add Debt</button></form></section>
+      <section class="panel"><div class="panel-header"><h2>Add Debt</h2></div><form id="debtForm" class="form-stack"><input id="debtName" type="text" placeholder="Debt name e.g. Credit Card" required /><input id="debtBalance" type="number" min="0" step="0.01" placeholder="Balance" required /><input id="debtPayment" type="number" min="0" step="0.01" placeholder="Monthly payment" required /><input id="debtInterest" type="number" min="0" step="0.01" placeholder="APR %, use 0 if none" /><button type="submit">Add Debt</button></form></section>
       <section class="panel"><div class="panel-header"><h2>Security</h2></div><div class="form-stack"><button id="changePasswordBtn">Change Password</button><button id="setPinBtn">Set / Change Quick PIN</button><button id="removePinBtn" class="danger-outline">Remove Quick PIN</button></div></section>
       <section class="panel wide"><div class="panel-header"><div><h2>Debt Tracker</h2><p id="debtTotalText">Total debt: £0.00</p></div></div><div id="debtsList" class="mobile-list"></div></section>
       <section class="panel wide"><div class="panel-header"><h2>Charts</h2></div><div class="chart-grid"><div class="chart-card"><h3>Expenses Breakdown</h3><div class="chart-box"><canvas id="expenseChart"></canvas></div></div><div class="chart-card"><h3>Debt Balances</h3><div class="chart-box"><canvas id="debtChart"></canvas></div></div></div></section>
-      <section class="panel wide"><div class="panel-header"><div><h2>Monthly History</h2><p>Archived month-end snapshots.</p></div></div><div id="historyList" class="mobile-list"></div></section>
-      <section class="panel wide"><div class="panel-header"><h2>Data Controls</h2></div><div class="actions"><button id="exportBtn">Export Backup</button><label class="import-label">Import Backup<input id="importInput" type="file" accept="application/json" /></label><button id="factoryResetBtn" class="danger">Factory Reset</button></div></section>
-    </main>
-
-    <footer class="footer"><span>Finance Tracker v2.1.0</span><span>Mobile-first GitHub Pages / PWA</span></footer>
+      <section class="panel wide"><div class="panel-header"><div><h2>Monthly History</h2><p>Archived monthly snapshots.</p></div></div><div id="historyList" class="mobile-list"></div></section>
+      <section class="panel wide"><div class="panel-header"><h2>Data Controls</h2></div><div class="actions"><button id="exportBtn">Export Backup</button><label class="import-label">Import Backup<input id="importInput" type="file" accept="application/json" /></label><button id="loadSampleBtn">Load Sample Data</button><button id="factoryResetBtn" class="danger">Factory Reset</button></div></section>
+    </main><footer class="footer"><span>Finance Monthly Money Tracker v3.0.0</span><span>Mobile-first PWA</span></footer>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script><script src="app.js"></script>
+</body></html>
