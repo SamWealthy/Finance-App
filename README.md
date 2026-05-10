@@ -1,19 +1,33 @@
-# Personal Finance Tracker PWA
+# Finance Monthly Money Tracker
 
-Version: `v2.1.0`
+A mobile-first Progressive Web App for anyone who wants to track monthly income, bills, expenses, debts, and remaining money.
 
-Mobile-first release for GitHub Pages.
+## Features
 
-## Key Fixes
-- Replaced wide tables with stacked mobile cards.
-- Improved phone layout and button stacking.
-- Added iPhone safe-area support.
-- Fixed horizontal overflow.
-- Improved mobile chart sizing.
+- First-use password setup
+- Optional 4-digit quick PIN
+- Add/edit/delete bills, expenses, and debts
+- Tick off paid bills every month
+- Recurring and one-off expense support
+- Monthly archive/history
+- Debt payoff calculation with APR
+- Expense and debt charts
+- Export/import backup
+- Installable on mobile as a PWA
+- Works on GitHub Pages
 
-## Update Steps
-1. Replace your existing GitHub Pages files with this ZIP content.
-2. Commit and push.
-3. Open the app on your phone.
-4. If old layout appears, clear site data or hard refresh.
-5. Confirm footer says `Finance Tracker v2.1.0`.
+## Privacy
+
+All data is stored locally on the user's own device using browser storage. There is no cloud account or shared database in this version.
+
+## Deploy on GitHub Pages
+
+1. Upload all files to your repository.
+2. Go to Settings > Pages.
+3. Select your deployment branch.
+4. Open your GitHub Pages URL.
+5. Confirm the footer says v3.0.0.
+
+## Version
+
+v3.0.0

@@ -1,24 +1,14 @@
 {
-  "name": "Personal Finance Tracker",
-  "short_name": "Finance",
+  "name": "Finance Monthly Money Tracker",
+  "short_name": "Money Tracker",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
-  "description": "Monthly budgeting, bill tick-off, and debt tracker PWA.",
+  "description": "A mobile-friendly monthly money tracker for income, expenses, bills, debts, and monthly history.",
   "icons": [
-    {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
   ]
 }
